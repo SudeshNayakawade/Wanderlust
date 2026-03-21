@@ -55,7 +55,7 @@ store.on("error", function(e){
 
 const sessionOptions ={
     store: store,
-    secret : process.env.SECRET,
+    secret: process.env.SECRET || "fallbacksecret123",
     resave : false,
     saveUninitialized : true,
     cookie : {
@@ -115,6 +115,10 @@ app.use("/", userRoutes);
 //     console.log("Sample was saved");
 //     res.send("Successfully saved");
 // })
+
+app.get("/", (req, res) => {
+    res.redirect("/listings");
+});
 
 app.use( (req, res, next) => {
     next(new ExpressError(404, "Page not found!"));
