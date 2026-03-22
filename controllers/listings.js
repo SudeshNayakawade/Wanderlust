@@ -21,14 +21,18 @@ module.exports.showListing = async (req, res) => {
 }
 
 module.exports.createListing = async (req, res, next) => {
-    let url = req.file.path;
-    let filename = req.file.filename;
+    console.log("🔥 CREATE LISTING ROUTE HIT");
     const newListing = new Listing(req.body.listing);
     newListing.owner = req.user._id;
-    newListing.image={
-        url,
-        filename
+    if (req.file) {
+        newListing.image = {
+            url: req.file.path,
+            filename: req.file.filename
+        };
+    } else {
+        console.log("❌ No file uploaded");
     }
+    console.log("FILE:", req.file);
     await newListing.save();
     req.flash("success", "Successfully New Listing Created!");
     res.redirect("/listings");

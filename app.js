@@ -81,12 +81,12 @@ app.use((req, res, next) => {
     res.locals.success = req.flash("success");
     res.locals.error = req.flash("error");
     res.locals.currentUser = req.user || null;
+    console.log("USER:", req.user);
     next();
 })
 
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
-
 
 
 // app.get("/demouser", async(req, res)=>{
