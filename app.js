@@ -22,7 +22,6 @@ const reviewRoutes = require("./routes/review.js");
 const userRoutes = require("./routes/user.js");
 
 const MONGO_URL = process.env.ATLAS_DB_URL;
-console.log(process.env.ATLAS_DB_URL);
 
 main().then(() => {
     console.log("Connected to db");
@@ -64,6 +63,7 @@ const sessionOptions ={
         httpOnly : true,
     }
 }
+
 
 // app.get("/", (req, res) => {
 //     res.send("Hii , I am root");
